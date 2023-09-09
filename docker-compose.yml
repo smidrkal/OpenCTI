@@ -86,7 +86,7 @@ services:
       - rabbitmq
     restart: always
   worker:
-    image: opencti/worker:5.10.1
+    image: opencti/worker:${OPENCTI_VERSION}
     environment:
       - OPENCTI_URL=http://opencti:8080
       - OPENCTI_TOKEN=${OPENCTI_ADMIN_TOKEN}
@@ -98,7 +98,7 @@ services:
       replicas: 3
     restart: always
   connector-export-file-stix:
-    image: opencti/connector-export-file-stix:5.10.1
+    image: opencti/connector-export-file-stix:${OPENCTI_VERSION}
     environment:
       - OPENCTI_URL=http://opencti:8080
       - OPENCTI_TOKEN=${OPENCTI_ADMIN_TOKEN}
@@ -126,7 +126,7 @@ services:
     depends_on:
       - opencti
   connector-export-file-txt:
-    image: opencti/connector-export-file-txt:5.10.1
+    image: opencti/connector-export-file-txt:${OPENCTI_VERSION}
     environment:
       - OPENCTI_URL=http://opencti:8080
       - OPENCTI_TOKEN=${OPENCTI_ADMIN_TOKEN}
@@ -140,7 +140,7 @@ services:
     depends_on:
       - opencti
   connector-import-file-stix:
-    image: opencti/connector-import-file-stix:5.10.1
+    image: opencti/connector-import-file-stix:${OPENCTI_VERSION}
     environment:
       - OPENCTI_URL=http://opencti:8080
       - OPENCTI_TOKEN=${OPENCTI_ADMIN_TOKEN}
@@ -156,7 +156,7 @@ services:
     depends_on:
       - opencti
   connector-import-document:
-    image: opencti/connector-import-document:5.10.1
+    image: opencti/connector-import-document:${OPENCTI_VERSION}
     environment:
       - OPENCTI_URL=http://opencti:8080
       - OPENCTI_TOKEN=${OPENCTI_ADMIN_TOKEN}
@@ -174,7 +174,7 @@ services:
     depends_on:
       - opencti
   connector-virustotal:
-    image: opencti/connector-virustotal:5.10.1
+    image: opencti/connector-virustotal:${OPENCTI_VERSION}
     environment:
       - OPENCTI_URL=http://opencti:8080
       - OPENCTI_TOKEN=${OPENCTI_ADMIN_TOKEN}
