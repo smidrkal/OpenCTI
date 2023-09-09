@@ -37,6 +37,7 @@ Howto, for example, https://docs.portainer.io/start/install/server/docker/wsl
 * Cryptoleamus - https://paste.cryptoleamus.com
 * CVE - download from https://nvd.nist.gov/feeds/json/cve/1.1/
 * Malpedia - https://malpedia.caad.fkie.fraunhofer.de/
+* Malware Bazaar - taking data directly from https://mb-api.abuse.ch/api/v1/
 * MITRE - downloaded from https://github.com/mitre/cti/
 * URLHaus - CSV download from https://urlhaus.abuse.ch/downloads/csv_recent/
 * VXVault - http://vxvault.net/URL_List.php
