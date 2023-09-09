@@ -1,6 +1,8 @@
 # OpenCTI
 Docker Compose template for a Security Analyst workstation to build working and usable (local) instance of http://opencti.io/ - an Open Threat Intelligence Platform.
 
+This is not direclty my work, but bits and pieces glued together. See References at the bottom.
+
 ## How to use
 
 ### 1. Get Docker working.
@@ -50,3 +52,15 @@ If you cannot access http://localhost:8080 (or according to changes in your dock
 
 
 ![OpenCTI Connectors overview](/docs/opencti-connectors.PNG)
+
+
+## References
+* example from docs: https://github.com/OpenCTI-Platform/connectors/blob/master/.circleci/config.yml
+* VT connector article: https://medium.com/@zdsecurity/adding-internal-enrichment-virus-total-connector-in-opencti-b5d7d4e02476
+* similar: https://github.com/Crypt-0n/OpenCTI/blob/master/3.yml
+* DFIR connectors: https://www.iblue.team/opencti/configure-connectors
+* https://github.com/OpenCTI-Platform/docker/blob/master/.env.sample
+* list of connectors https://github.com/OpenCTI-Platform/connectors/tree/master/external-import
+* similar: https://github.com/JMousqueton/OpenCTI-Docker
+
+btw, https://www.maltego.com/transform-hub/opencti/
