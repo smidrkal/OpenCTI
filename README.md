@@ -50,11 +50,24 @@ Mandatory.
 
 `docker-compose.yml` and `.env.template` are all you need.
 
-### Edit .env
+### Create .env
 Mandatory.
 
 - Move `.env.template` to `.env`
 - add your values to `.env` (follow the comments in the file).
+
+#### Optional: auto-generate UUIDs
+Use the provided `gen-uuid-env.sh` or `gen-uuid-env.ps1` according to your OS
+#### Linux - Bash
+```bash
+sed "s/ \# generate new for each var.*uuidgenerator.*/`cat /proc/sys/kernel/random/uuid`/g" .env.template > .env
+```
+#### Windows - PowerShell
+Use within the same directory where you have cloned the repository.
+```powershell
+(Get-Content -Path .\.env.template) -replace ' # generate new for each var at https://www.uuidgenerator.net/', [guid]::NewGuid().ToString() > .env
+```
+
 
 > Note: some connectors require personal API keys for services requiring registration
 
