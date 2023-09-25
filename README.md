@@ -34,7 +34,7 @@ Howto, for example, https://docs.portainer.io/start/install/server/docker/wsl
 ### Working out-of-the-box
 * AMITT - download from https://github.com/VVX7/cti
 * CISA KEV - download from https://www.cisa.gov/sites/default/files/feeds/known_exploited_vulnerabilities.json
-* Cryptoleamus - https://paste.cryptoleamus.com
+* Cryptolaemus - https://paste.cryptolaemus.com
 * CVE - download from https://nvd.nist.gov/feeds/json/cve/1.1/
 * Malpedia - https://malpedia.caad.fkie.fraunhofer.de/
 * Malware Bazaar - taking data directly from https://mb-api.abuse.ch/api/v1/
