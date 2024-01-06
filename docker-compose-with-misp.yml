@@ -431,7 +431,7 @@ services:
       - MALPEDIA_CREATE_OBSERVABLES=true
     restart: always
     depends_on:
-      - opencti 
+      - opencti
     networks:
       - ctidmz
   connector-urlhaus:
@@ -472,26 +472,6 @@ services:
       - opencti
     networks:
       - ctidmz
-  connector-amitt:
-    image: opencti/connector-amitt:${OPENCTI_VERSION}
-    environment:
-      - OPENCTI_URL=http://opencti:8080
-      - OPENCTI_TOKEN=${OPENCTI_ADMIN_TOKEN}
-      - CONNECTOR_ID=${CONNECTOR_AMITT_ID}
-      - CONNECTOR_TYPE=EXTERNAL_IMPORT
-      - CONNECTOR_NAME=AM!TT
-      - CONNECTOR_SCOPE=identity,attack-pattern,course-of-action,intrusion-set,malware,tool,report
-      - CONNECTOR_CONFIDENCE_LEVEL=15 # From 0 (Unknown) to 100 (Fully trusted)
-      - CONNECTOR_UPDATE_EXISTING_DATA=true
-      - CONNECTOR_LOG_LEVEL=info
-      - AMITT_FILE_URL=https://raw.githubusercontent.com/VVX7/cti/master/amitt-attack/amitt-attack.json
-      - PRE_AMITT_FILE_URL=https://raw.githubusercontent.com/VVX7/cti/master/amitt-pre-attack/amitt-pre-attack.json
-      - AMITT_INTERVAL=7 # In days, must be strictly greater than 1
-    restart: always
-    depends_on:
-      - opencti     
-    networks:
-      - ctidmz
   connector-malware-bazaar-recent-additions:
     image: opencti/connector-malwarebazaar-recent-additions:${OPENCTI_VERSION}
     environment:
@@ -505,7 +485,7 @@ services:
       - CONNECTOR_LOG_LEVEL=info
       - MALWAREBAZAAR_RECENT_ADDITIONS_API_URL=https://mb-api.abuse.ch/api/v1/
       - MALWAREBAZAAR_RECENT_ADDITIONS_COOLDOWN_SECONDS=300 # Time to wait in seconds between subsequent requests
-      - MALWAREBAZAAR_RECENT_ADDITIONS_INCLUDE_TAGS=exe,dll,docm,docx,doc,xls,xlsx,xlsm,vbs,zip,bin,sys,dll # (Optional) Only download files if any tag matches. (Comma separated)
+      - MALWAREBAZAAR_RECENT_ADDITIONS_INCLUDE_TAGS=exe,dll,docm,docx,doc,xls,xlsx,xlsm,js # (Optional) Only download files if any tag matches. (Comma separated)
       - MALWAREBAZAAR_RECENT_ADDITIONS_INCLUDE_REPORTERS= # (Optional) Only download files uploaded by these reporters. (Comma separated)
       - MALWAREBAZAAR_RECENT_ADDITIONS_LABELS=malware-bazar # (Optional) Labels to apply to uploaded Artifacts. (Comma separated)
       - MALWAREBAZAAR_RECENT_ADDITIONS_LABELS_COLOR=#54483b # Color to use for labels
@@ -514,6 +494,119 @@ services:
       - opencti
     networks:
       - ctidmz
+  # ToDo: https://raw.githubusercontent.com/OpenCTI-Platform/connectors/master/external-import/misp/docker-compose.yml 
+  connector-misp:
+    image: opencti/connector-misp:${OPENCTI_VERSION}
+    environment:
+      - OPENCTI_URL=http://opencti:8080
+      - OPENCTI_TOKEN=${OPENCTI_ADMIN_TOKEN}
+      - CONNECTOR_ID=${CONNECTOR_MISP_ID}
+      - CONNECTOR_TYPE=EXTERNAL_IMPORT
+      - CONNECTOR_NAME=MISP
+      - CONNECTOR_SCOPE=misp
+      - CONNECTOR_CONFIDENCE_LEVEL=25 # From 0 (Unknown) to 100 (Fully trusted)
+      - CONNECTOR_LOG_LEVEL=error
+      - CONNECTOR_EXPOSE_METRICS=false
+      - MISP_URL=${MISP_BASEURL} # Required
+      - MISP_REFERENCE_URL= # Optional, will be used to create external reference to MISP event (default is "url")
+      - MISP_KEY=${MISP_API_KEY} # Required
+      - MISP_SSL_VERIFY=false # Required
+      - MISP_DATETIME_ATTRIBUTE=timestamp # Required, filter to be used in query for new MISP events
+      - MISP_REPORT_DESCRIPTION_ATTRIBUTE_FILTER= # Optional, filter to be used to find the attribute with report description (example: "type=comment,category=Internal reference")
+      - MISP_CREATE_REPORTS=true # Required, create report for MISP event
+      - MISP_CREATE_INDICATORS=true # Required, create indicators from attributes
+      - MISP_CREATE_OBSERVABLES=true # Required, create observables from attributes
+      - MISP_CREATE_OBJECT_OBSERVABLES=true # Required, create text observables for MISP objects
+      - MISP_CREATE_TAGS_AS_LABELS=true # Optional, create tags as labels (sanitize MISP tag to OpenCTI labels)
+      - MISP_GUESS_THREAT_FROM_TAGS=false # Optional, try to guess threats (threat actor, intrusion set, malware, etc.) from MISP tags when they are present in OpenCTI
+      - MISP_AUTHOR_FROM_TAGS=false # Optional, map creator:XX=YY (author of event will be YY instead of the author of the event)
+      - MISP_MARKINGS_FROM_TAGS=false # Optional, map marking:XX=YY (in addition to TLP, add XX:YY as marking definition, where XX is marking type, YY is marking value)
+      - MISP_ENFORCE_WARNING_LIST=false # Optional, enforce warning list in MISP queries
+      - MISP_REPORT_TYPE=misp-event # Optional, report_class if creating report for event
+      - MISP_IMPORT_FROM_DATE=2000-01-01 # Required, import all event from this date
+      - MISP_IMPORT_TAGS=opencti:import,type:osint # Optional, list of tags used for import events
+      - MISP_IMPORT_TAGS_NOT= # Optional, list of tags to not include
+      - MISP_IMPORT_CREATOR_ORGS= # Optional, only import events created by those orgs (put the identifiers here)
+      - MISP_IMPORT_CREATOR_ORGS_NOT= # Optional, do not import events created by those orgs (put the identifiers here)
+      - MISP_IMPORT_OWNER_ORGS= # Optional, only import events owned by those orgs (put the identifiers here)
+      - MISP_IMPORT_OWNER_ORGS_NOT= # Optional, do not import events owned by those orgs (put the identifiers here)
+      - MISP_IMPORT_KEYWORD= # Optional, search only events based on a keyword
+      - MISP_IMPORT_DISTRIBUTION_LEVELS= # Optional, only import events with the given distribution levels (ex: 0,1,2,3)
+      - MISP_IMPORT_THREAT_LEVELS= # Optional only import events with the given threat levels (ex: 1,2,3,4)
+      - MISP_IMPORT_ONLY_PUBLISHED=false
+      - MISP_IMPORT_WITH_ATTACHMENTS=false # Optional, try to import a PDF file from the attachment attribute
+      - MISP_IMPORT_TO_IDS_NO_SCORE=40 # Optional, use as a score for the indicator/observable if the attribute to_ids is no
+      - MISP_IMPORT_UNSUPPORTED_OBSERVABLES_AS_TEXT=false #  Optional, import unsupported observable as x_opencti_text
+      - MISP_IMPORT_UNSUPPORTED_OBSERVABLES_AS_TEXT_TRANSPARENT=true #  Optional, import unsupported observable as x_opencti_text just with the value
+      - MISP_INTERVAL=5 # Required, in minutes
+    restart: always
+    depends_on:
+      - opencti
+      - misp
+    networks:
+      - ctidmz
+  mysql:
+    image: mariadb:11.1
+    restart: always
+    container_name: mysql
+    tmpfs:
+      - /tmp
+    volumes:
+      - mysqldata:/var/lib/mysql
+    environment:
+      MYSQL_DATABASE: ${MISP_DATABASE}
+      MYSQL_USER: ${MYSQL_USER}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD} # Please change for production
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD} # Please change for production
+    networks:
+      - ctidmz
+  misp-modules:
+    image: ghcr.io/nukib/misp-modules:latest
+    restart: always
+    container_name: misp-modules
+    cap_drop:
+      - NET_RAW
+      - SYS_CHROOT
+      - MKNOD
+      - NET_BIND_SERVICE
+      - AUDIT_WRITE
+      - SETFCAP
+    networks:
+      - ctidmz
+  misp:
+    image: ${MISP_IMAGE-ghcr.io/nukib/misp:latest}
+    restart: always
+    container_name: misp
+    depends_on:
+      - mysql
+      - redis
+    tmpfs:
+      - /tmp
+    cap_drop:
+      - NET_RAW
+      - SYS_CHROOT
+      - MKNOD
+      - AUDIT_WRITE
+      - SETFCAP
+    environment:
+      MYSQL_HOST: mysql
+      MYSQL_LOGIN: ${MYSQL_USER}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD} # Please change for production
+      MYSQL_DATABASE: ${MISP_DATABASE}
+      REDIS_HOST: redis
+      MISP_BASEURL: ${MISP_BASEURL}
+      MISP_UUID: ${MISP_UUID}
+      MISP_ORG: ${MISP_ORG}
+      MISP_MODULE_URL: http://misp-modules
+      MISP_EMAIL: ${MISP_EMAIL} # Please change for production
+      SECURITY_SALT: ${MISP_SALT} # Please change for production
+      ZEROMQ_ENABLED: "yes"
+    ports:
+      - 127.0.0.1:8090:80
+      - 127.0.0.1:50000:50000
+    networks:
+      - ctidmz
+
 volumes:
   esdata:
   s3data:
@@ -523,9 +616,9 @@ volumes:
 networks:
   ctidmz:
     driver: bridge
-#    enable_ipv6: true
+    enable_ipv6: true
     ipam:
       driver: default
       config:
-        - subnet: 192.168.86.0/24
-          gateway: 192.168.86.1
+        - subnet: ${CTIDMZ_NETWORK}
+          gateway: ${CTIDMZ_GATEWAY}
