@@ -7,6 +7,10 @@ See [References](#References) at the bottom.
 Some services may require registration, however aim of this build is to get the most information for $0 monthly fees.
 Just add connectors for commercial services, like Intel471, according to your needs and budget.
 
+> [!NOTE]
+> *Update 202401:*
+> Working on a minor cleanup + playing with adding additional services (e.g. MISP)
+
 ## Prerequisities
 
 ### Get Docker working.
@@ -32,9 +36,9 @@ Howto, for example, https://docs.portainer.io/start/install/server/docker/wsl
 * [VirusTotal](https://www.virustotal.com/) - virustotal.com/gui/user/-yourUsername-/apikey
 
 ### Working out-of-the-box
-* AMITT - download from https://github.com/VVX7/cti
+* ~AMITT~ (dead & removed)- download from https://github.com/VVX7/cti
 * CISA KEV - download from https://www.cisa.gov/sites/default/files/feeds/known_exploited_vulnerabilities.json
-* Cryptolaemus - https://paste.cryptolaemus.com
+* ~Cryptolaemus~ (dead & removed) - https://paste.cryptolaemus.com
 * CVE - download from https://nvd.nist.gov/feeds/json/cve/1.1/
 * Malpedia - https://malpedia.caad.fkie.fraunhofer.de/
 * Malware Bazaar - taking data directly from https://mb-api.abuse.ch/api/v1/
