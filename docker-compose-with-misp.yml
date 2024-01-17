@@ -344,6 +344,8 @@ services:
       - CVE_NVD_DATA_FEED=https://nvd.nist.gov/feeds/json/cve/1.1/nvdcve-1.1-recent.json.gz
       - CVE_HISTORY_DATA_FEED=https://nvd.nist.gov/feeds/json/cve/1.1/
       - CVE_INTERVAL=7 # In days, must be strictly greater than 1
+      - CVE_BASE_URL=https://services.nvd.nist.gov/rest/json/cves
+      - CVE_API_KEY=/
     restart: always
     depends_on:
       - opencti
@@ -507,7 +509,7 @@ services:
       - CONNECTOR_CONFIDENCE_LEVEL=25 # From 0 (Unknown) to 100 (Fully trusted)
       - CONNECTOR_LOG_LEVEL=error
       - CONNECTOR_EXPOSE_METRICS=false
-      - MISP_URL=${MISP_BASEURL} # Required
+      - MISP_URL=http://misp:8090 # Required
       - MISP_REFERENCE_URL= # Optional, will be used to create external reference to MISP event (default is "url")
       - MISP_KEY=${MISP_API_KEY} # Required
       - MISP_SSL_VERIFY=false # Required
@@ -616,7 +618,7 @@ volumes:
 networks:
   ctidmz:
     driver: bridge
-    enable_ipv6: true
+    enable_ipv6: false
     ipam:
       driver: default
       config:
