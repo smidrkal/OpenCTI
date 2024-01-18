@@ -175,6 +175,23 @@ services:
       - opencti
     networks:
       - ctidmz
+  connector-yara:
+    image: opencti/connector-yara:${OPENCTI_VERSION}
+    environment:
+      - OPENCTI_URL=http://opencti:8080
+      - OPENCTI_TOKEN=${OPENCTI_ADMIN_TOKEN}
+      - CONNECTOR_ID=${CONNECTOR_YARA_ID}
+      - CONNECTOR_TYPE=INTERNAL_ENRICHMENT
+      - CONNECTOR_NAME=YARA
+      - CONNECTOR_SCOPE=Artifact # MIME type or Stix Object
+      - CONNECTOR_AUTO=true
+      - CONNECTOR_CONFIDENCE_LEVEL=100 # From 0 (Unknown) to 100 (Fully trusted)
+      - CONNECTOR_LOG_LEVEL=error
+    restart: always 
+    depends_on:
+      - opencti
+    networks:
+      - ctidmz
   connector-import-document:
     image: opencti/connector-import-document:${OPENCTI_VERSION}
     environment:

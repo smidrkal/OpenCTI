@@ -54,7 +54,7 @@ Howto, for example, https://docs.portainer.io/start/install/server/docker/wsl
 * ThreatFox - Downloads data from [Threat Fox Recent Feed](https://threatfox.abuse.ch/)
 * URLHaus - CSV download from https://urlhaus.abuse.ch/downloads/csv_recent/
 * VXVault - http://vxvault.net/URL_List.php
-
+* Yara - connector enriches Artifact Observables by scanning their contents using every YARA Indicator in the system
 
 ## How to Use
 
