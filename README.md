@@ -47,6 +47,10 @@ Howto, for example, https://docs.portainer.io/start/install/server/docker/wsl
 * Malware Bazaar - taking data directly from https://mb-api.abuse.ch/api/v1/
 * MITRE - downloaded from https://github.com/mitre/cti/
 * Phishunt.io - known phishing sites. Free version gives you public feed of known phishing sites.
+* OpenCTI Datasets - This connector collects data from the OpenCTI datasets repository in order to pre-populate your OpenCTI instance with information like the following:
+  - companies (identity objects)
+  - industry sectors (identity objects)
+  - countries and regions (locations objects)
 * URLHaus - CSV download from https://urlhaus.abuse.ch/downloads/csv_recent/
 * VXVault - http://vxvault.net/URL_List.php
 
