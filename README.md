@@ -51,6 +51,7 @@ Howto, for example, https://docs.portainer.io/start/install/server/docker/wsl
   - companies (identity objects)
   - industry sectors (identity objects)
   - countries and regions (locations objects)
+* ThreatFox - Downloads data from [Threat Fox Recent Feed](https://threatfox.abuse.ch/)
 * URLHaus - CSV download from https://urlhaus.abuse.ch/downloads/csv_recent/
 * VXVault - http://vxvault.net/URL_List.php
 
