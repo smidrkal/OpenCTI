@@ -493,44 +493,26 @@ services:
       - opencti
     networks:
       - ctidmz
-## cryptolaemus is dead?!
-  # connector-cryptolaemus:
-  #   image: opencti/connector-cryptolaemus:${OPENCTI_VERSION}
-  #   environment:
-  #     - OPENCTI_URL=http://opencti:8080
-  #     - OPENCTI_TOKEN=${OPENCTI_ADMIN_TOKEN}
-  #     - CONNECTOR_ID=${CONNECTOR_CRYPTOLAEMUS_ID}
-  #     - CONNECTOR_TYPE=EXTERNAL_IMPORT
-  #     - CONNECTOR_NAME=Cryptolaemus
-  #     - CONNECTOR_SCOPE=cryptolaemus
-  #     - CONNECTOR_CONFIDENCE_LEVEL=15 # From 0 (Unknown) to 100 (Fully trusted)
-  #     - CONNECTOR_UPDATE_EXISTING_DATA=true
-  #     - CONNECTOR_LOG_LEVEL=info
-  #   restart: always
-  #   depends_on:
-  #     - opencti
-  #   networks:
-  #    - ctidmz
-  connector-amitt:
-    image: opencti/connector-amitt:${OPENCTI_VERSION}
+  connector-disarm-framework:
+    image: opencti/connector-disarm-framework:${OPENCTI_VERSION}
     environment:
       - OPENCTI_URL=http://opencti:8080
       - OPENCTI_TOKEN=${OPENCTI_ADMIN_TOKEN}
-      - CONNECTOR_ID=${CONNECTOR_AMITT_ID}
+      - CONNECTOR_ID=${CONNECTOR_DISARM_ID}
       - CONNECTOR_TYPE=EXTERNAL_IMPORT
-      - CONNECTOR_NAME=AM!TT
-      - CONNECTOR_SCOPE=identity,attack-pattern,course-of-action,intrusion-set,malware,tool,report
-      - CONNECTOR_CONFIDENCE_LEVEL=15 # From 0 (Unknown) to 100 (Fully trusted)
-      - CONNECTOR_UPDATE_EXISTING_DATA=true
-      - CONNECTOR_LOG_LEVEL=info
-      - AMITT_FILE_URL=https://raw.githubusercontent.com/VVX7/cti/master/amitt-attack/amitt-attack.json
-      - PRE_AMITT_FILE_URL=https://raw.githubusercontent.com/VVX7/cti/master/amitt-pre-attack/amitt-pre-attack.json
-      - AMITT_INTERVAL=7 # In days, must be strictly greater than 1
+      - "CONNECTOR_NAME=DISARM Framework"
+      - CONNECTOR_SCOPE=marking-definition,identity,attack-pattern,course-of-action,intrusion-set,campaign,malware,tool,report,narrative,event,channel
+      - CONNECTOR_CONFIDENCE_LEVEL=75 # From 0 (Unknown) to 100 (Fully trusted)
+      - CONNECTOR_RUN_AND_TERMINATE=false
+      - CONNECTOR_LOG_LEVEL=error
+      - DISARM_FRAMEWORK_URL=https://raw.githubusercontent.com/DISARMFoundation/DISARMframeworks/main/generated_files/DISARM_STIX/DISARM.json
+      - DISARM_FRAMEWORK_INTERVAL=7 # In days, must be strictly greater than 1
     restart: always
     depends_on:
-      - opencti     
+       - opencti
     networks:
       - ctidmz
+
   connector-malware-bazaar-recent-additions:
     image: opencti/connector-malwarebazaar-recent-additions:${OPENCTI_VERSION}
     environment:

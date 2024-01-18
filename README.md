@@ -42,6 +42,7 @@ Howto, for example, https://docs.portainer.io/start/install/server/docker/wsl
 * ~Cryptolaemus~ (dead & removed) - https://paste.cryptolaemus.com
 * CVE - download from https://nvd.nist.gov/feeds/json/cve/1.1/
 * Cyber Campaign Collection - download reports and monitor for new ones on https://github.com/CyberMonitor/APT_CyberCriminal_Campagin_Collections/tree/master/ 
+* Disarm Framework - external import of https://raw.githubusercontent.com/DISARMFoundation/DISARMframeworks/main/generated_files/DISARM_STIX/DISARM.json
 * Malpedia - https://malpedia.caad.fkie.fraunhofer.de/
 * Malware Bazaar - taking data directly from https://mb-api.abuse.ch/api/v1/
 * MITRE - downloaded from https://github.com/mitre/cti/
