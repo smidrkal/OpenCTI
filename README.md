@@ -31,18 +31,21 @@ Howto, for example, https://docs.portainer.io/start/install/server/docker/wsl
 * [AbuseIPDB](https://www.abuseipdb.com/account/api)
 * [AlienVault OTX](https://otx.alienvault.com/api) - OTX = Open Threat eXchange
 * [Malbeacon](https://www.malbeacon.com/register)
-* ~[RiskIQ](https://community.riskiq.com/)~ - bought by Microsoft and turned into [Microsoft Defender Threat Intelligence](https://ti.defender.microsoft.com/); not yet sure how/if even available
+* ~[RiskIQ](https://community.riskiq.com/)~ - bought by Microsoft and turned into [Microsoft Defender Threat Intelligence](https://ti.defender.microsoft.com/); No new registrations possible, works for pre-Microsoft Defender TI accounts...
 * [Shodan](https://account.shodan.io/)
 * [VirusTotal](https://www.virustotal.com/) - virustotal.com/gui/user/-yourUsername-/apikey
 
 ### Working out-of-the-box
+* AbuseSSL - downloads list and monitors https://sslbl.abuse.ch/
 * ~AMITT~ (dead & removed)- download from https://github.com/VVX7/cti
 * CISA KEV - download from https://www.cisa.gov/sites/default/files/feeds/known_exploited_vulnerabilities.json
 * ~Cryptolaemus~ (dead & removed) - https://paste.cryptolaemus.com
 * CVE - download from https://nvd.nist.gov/feeds/json/cve/1.1/
+* Cyber Campaign Collection - download reports and monitor for new ones on https://github.com/CyberMonitor/APT_CyberCriminal_Campagin_Collections/tree/master/ 
 * Malpedia - https://malpedia.caad.fkie.fraunhofer.de/
 * Malware Bazaar - taking data directly from https://mb-api.abuse.ch/api/v1/
 * MITRE - downloaded from https://github.com/mitre/cti/
+* Phishunt.io - known phishing sites. Free version gives you public feed of known phishing sites.
 * URLHaus - CSV download from https://urlhaus.abuse.ch/downloads/csv_recent/
 * VXVault - http://vxvault.net/URL_List.php
 
