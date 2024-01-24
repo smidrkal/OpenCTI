@@ -1,3 +1,4 @@
+## NOTE! This is a hot-glued good-enough-for-demo thing!
 version: '3'
 services:
   redis:
@@ -601,6 +602,7 @@ volumes:
   redisdata:
   amqpdata:
   mysqldata:
+  
 networks:
   ctidmz:
     driver: bridge
