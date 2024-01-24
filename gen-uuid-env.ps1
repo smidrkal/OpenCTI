@@ -1,7 +1,7 @@
 ## generate UUIDs for new .env on Windows
 
 ## if you don't want error '...not digitally signed. The script will not execute on the system.':
-# Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass
+# Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass.
 
 # gen UUID: powershell -Command "[guid]::NewGuid().ToString()"
 ## problematic. if working, all replaced with the same guid.
