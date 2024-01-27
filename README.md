@@ -105,6 +105,38 @@ If you cannot access http://localhost:8080 (or according to changes in your dock
 
 ![OpenCTI Connectors overview](/docs/opencti-connectors.PNG)
 
+## Notes regarding MISP
+
+If you don't have your own MISP instance, please consider `docker-compose-with-misp.yml` to test OpenCTI integration with MISP.
+
+Primary aim of this repository is to allow easy initial test-drive/demo of OpenCTI Platform, so I am not going into depth with MISP here. I may however point to a full 'Cyberstack' project from here with additional tools included (e.g. Wazuh, IntelOwl, Shuffle, etc.).
+
+> [!NOTE]
+> [NUKIB.cz MISP](https://github.com/NUKIB/misp) Docker Stack is used instead of the [Official Docker Image](https://github.com/MISP/misp-docker), provided by CIRCL.lu!
+>
+> In addition to the official images, NUKIB extended their image with additional functionality, working out-of-the-box - e.g. OpenID Connect, readyness for air-gapped deployments, etc.
+>
+> *NUKIB.cz and CIRCL.lu are working together on both Docker Images. I may switch to official docker image of CIRCL.lu in the future.*
+
+> [!WARNING]
+> OpenCTI `connector-misp` will fail to run, unless a working API key is provided.
+>
+> In order to provide working API key, you need your MISP instance up & running, users configured, and API key generated for the delegated user.
+>
+> Docker Stack deployment through Portainer allows you to edit the ENV variables for already deployed/running Stack.
+>
+> => Don't forget to add the right MISP API key for `connector-misp` & Update the Stack once you have your MISP container ready.
+
+> [!TIP]
+> You may want to load some (or all) [MISP Default Feeds](https://www.misp-project.org/feeds/) ([raw JSON](https://raw.githubusercontent.com/MISP/MISP/2.4/app/files/feed-metadata/defaults.json)) into your MISP to play with the available free CTI & OSINT data.
+>
+> MISP: Sync Actions -> Feeds -> Import Feeds from JSON 
+> `http://localhost:8090/feeds/importFeeds`
+>
+> **Remember**:
+> * Select only Feeds, that will provide you with added value! <br /> Some resources are already ingested into OpenCTI!
+> * You still need to enable selected Feeds in order to obtain their data!
+> * Consider periodical refresh of the feeds using a cron script!
 
 ## References
 * example from docs: https://github.com/OpenCTI-Platform/connectors/blob/master/.circleci/config.yml
