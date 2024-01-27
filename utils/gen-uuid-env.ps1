@@ -10,11 +10,12 @@
 ## works, but provides one GUID on every line. We need different for each line.
 #(Get-Content ".env.template") -replace ' # generate new for each var at https://www.uuidgenerator.net/', [guid]::NewGuid().ToString() | Set-Content .env
 
-$lines = Get-Content ".env.template"
+$lines = Get-Content "..\.env.template"
 $len = $lines.count 
 for($i=0;$i-lt$len;$i++){
         $lines[$i] = $lines[$i] -replace ' # generate new for each var at https://www.uuidgenerator.net/', [guid]::NewGuid().ToString()
 }
-$lines > ".env.tmp"
-#cat ".env.temp" -Encoding UTF8 > ".env"
-Get-Content -Path ".env.tmp" | Out-File -FilePath ".env" -Encoding ascii
+$lines > "..\.env.tmp"
+## we want ASCII, not UTF-16 LE (causing issues everywhere)
+Get-Content -Path "..\.env.tmp" | Out-File -FilePath "..\.env" -Encoding ascii
+Remove-Item -Path "..\.env.tmp"

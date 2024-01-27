@@ -23,7 +23,9 @@ Optional, but highly suggested.
 
 Deploying and especially editing container stack is much easier this way.
 
-Howto, for example, https://docs.portainer.io/start/install/server/docker/wsl
+Howto, for example, https://docs.portainer.io/start/install/server/docker/wsl 
+
+## Prepare for OpenCTI deployment
 
 ### Register for (Free) Services
 
@@ -70,21 +72,17 @@ Mandatory.
 - add your values to `.env` (follow the comments in the file).
 
 #### Optional: auto-generate UUIDs
-Use the provided `gen-uuid-env.sh` or `gen-uuid-env.ps1` according to your OS
-#### Linux - Bash
-```bash
-sed "s/ \# generate new for each var.*uuidgenerator.*/`cat /proc/sys/kernel/random/uuid`/g" .env.template > .env
-```
-#### Windows - PowerShell
-Use within the same directory where you have cloned the repository.
-```powershell
-(Get-Content -Path .\.env.template) -replace ' # generate new for each var at https://www.uuidgenerator.net/', [guid]::NewGuid().ToString() > .env
-```
+Use the provided utils `gen-uuid-env.sh` or `gen-uuid-env.ps1`, according to the OS of your docker host, to auto-populate UUIDs in `.env` file.
 
 
-> Note: some connectors require personal API keys for services requiring registration
+> Note: some connectors require personal API keys for services requiring registration, see above.
 
 ### Deploy the stack
+
+> [!WARNING]
+>  to avoid Portainer error
+> `toomanyrequests: You have reached your pull rate limit. You may increase the limit by authenticating and upgrading`
+> consider pre-pulling the images using provided scripts under `utils` folder
 
 Use `docker compose up` from the same directory where `docker-compose.yml` and `.env` are.
 
