@@ -107,7 +107,7 @@ If you cannot access http://localhost:8080 (or according to changes in your dock
 
 ## Notes regarding MISP
 
-If you don't have your own MISP instance, please consider `docker-compose-with-misp.yml` to test OpenCTI integration with MISP.
+If you don't have your own [MISP](https://www.misp-project.org/) instance, please consider `docker-compose-with-misp.yml` to test OpenCTI integration with your local *Malware Information Sharing Platform (MISP)*.
 
 Primary aim of this repository is to allow easy initial test-drive/demo of OpenCTI Platform, so I am not going into depth with MISP here. I may however point to a full 'Cyberstack' project from here with additional tools included (e.g. Wazuh, IntelOwl, Shuffle, etc.).
 
