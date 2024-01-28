@@ -109,7 +109,13 @@ If you cannot access http://localhost:8080 (or according to changes in your dock
 
 If you don't have your own [MISP](https://www.misp-project.org/) instance, please consider `docker-compose-with-misp.yml` to test OpenCTI integration with your local *Malware Information Sharing Platform (MISP)*.
 
-Primary aim of this repository is to allow easy initial test-drive/demo of OpenCTI Platform, so I am not going into depth with MISP here. I may however point to a full 'Cyberstack' project from here with additional tools included (e.g. Wazuh, IntelOwl, Shuffle, etc.).
+In order to propagate MISP Object into OpenCTI, per default configuration, you need to tag the object as either `opencti:import` (custom local tag, that you need to create) or `type:osint`. You can change this behavior in the `docker-compose-with-misp.yml` (e.g. to import all but specifically tagged).
+
+![Tags in MISP for OpenCTI import](/docs/misp-tag-opencti_import.png)
+
+![Showcase of OpenCTI imported MISP object](/docs/opencti-import-misp-object.png)
+
+Primary aim of this repository is to allow easy initial test-drive/demo of OpenCTI Platform, so I am not going into depth with MISP here. I may however point you to a full 'Cyberstack' project with additional tools included (e.g. Wazuh, IntelOwl, Shuffle, etc.) in the future.
 
 > [!NOTE]
 > [NUKIB.cz MISP](https://github.com/NUKIB/misp) Docker Stack is used instead of the [Official Docker Image](https://github.com/MISP/misp-docker), provided by CIRCL.lu!
