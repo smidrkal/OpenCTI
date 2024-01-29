@@ -9,7 +9,7 @@ docker pull opencti/platform:latest
 docker pull opencti/worker:latest
 docker pull opencti/connector-yara:latest
 docker pull opencti/connector-export-file-stix:latest
-docker pull opencti/connector-export-file-csv:5.10.1
+docker pull opencti/connector-export-file-csv:latest
 docker pull opencti/connector-export-file-txt:latest
 docker pull opencti/connector-import-file-stix:latest
 docker pull opencti/connector-import-document:latest
