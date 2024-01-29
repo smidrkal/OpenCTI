@@ -1,7 +1,7 @@
 # OpenCTI
 Docker Compose template for a Security Analyst workstation to build working and usable (local) instance of http://opencti.io/ - an Open Threat Intelligence Platform.
 
-This is not direclty my work, but bits and pieces glued together for my own use.
+This is not directly my work, but bits and pieces glued together for my own use.
 See [References](#References) at the bottom.
 
 Some services may require registration, however aim of this build is to get the most information for $0 monthly fees.
