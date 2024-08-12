@@ -1,4 +1,6 @@
 ## NOTE! This is a hot-glued good-enough-for-demo thing!
+## -- last confirmed working: OpenCTI 5.12.23
+
 version: '3'
 services:
   redis:
